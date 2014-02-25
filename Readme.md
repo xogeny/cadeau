@@ -10,9 +10,10 @@ fragments instead of large decks of slides.
 There are a lot of nice Javascript frameworks out there for doing
 presentations.  But I find the markup is often arcane and their
 support for different types of markup is always uneven.  The idea
-being `cadeau` was largely inspired by discussions with @dietmarw and
-our joint goal of separating the slide content as much as possible
-from the presentation framework.
+being `cadeau` was largely inspired by discussions with
+[@dietmarw](http://github.com/dietmarw) and our joint goal of
+separating the slide content as much as possible from the presentation
+framework.
 
 My goal in this project is to create collections of slides and then
 use a presentation description file to organize those slides.  By
