@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var jade = require('jade');
+var hb = require('handlebars');
 var yaml = require('js-yaml');
 var cadeau = require('..');
 
@@ -22,10 +23,7 @@ var data = yaml.load(raw, { filename: src });
 var preamble = "";
 var context = cadeau.process_slides(data, preamble);
 
-var ft = jade.compile(fs.readFileSync("flowtime.jade"), {
-    filename: "flowtime.jade",
-    pretty: true
-});
+var ft = hb.compile(fs.readFileSync("flowtime.html", "utf8"));
 
 var result = ft(context);
 
