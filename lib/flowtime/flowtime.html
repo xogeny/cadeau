@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US" class="ie ie6 lt-ie9">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US" class="ie ie7 lt-ie9">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US" class="ie ie8 lt-ie9">
+<![endif]-->
+<!--[if gte IE 9]>
+<html lang="en-US" class="ie ie9">
+<![endif]-->
+<!--[if !(IE)]><!-->
+<html lang="en-US" class="">
+<!--<![endif]-->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="marcolago">
+
+    <meta property="og:title" content="Impact -- A Modelica Package Manager">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://github.com/xogeny/impact">
+    <meta property="og:image" 
+	  content="https://raw2.github.com/xogeny/impact/master/images/logo_glossy.svg">
+    <meta property="og:site_name" content="Impact">
+
+    <meta name="description" content="Impact is a package manager for the Modelica language">
+
+    <title>Impact</title>
+
+    {{#each metadata.scripts}}
+    <script src="{{this}}"></script>
+    {{/each}}
+
+    {{#each metadata.imports}}
+    <link rel="import" href="{{this}}">
+    {{/each}}
+
+    <link rel="stylesheet" href="css/flowtime/reset.css">
+    <link rel="stylesheet" href="css/flowtime/flowtime.css">
+    <link rel="stylesheet" href="css/flowtime/default.css">
+    <link rel="stylesheet" href="css/flowtime/prism.css">
+
+    {{#each metadata.styles}}
+    <link rel="stylesheet" href="{{this}}">
+    {{/each}}
+    
+    <link rel="apple-touch-icon-precomposed" 						href="img/touch-icon-iphone.png">
+    <link rel="apple-touch-icon-precomposed" 	sizes="72x72" 		href="img/touch-icon-ipad.png">
+    <link rel="apple-touch-icon-precomposed" 	sizes="114x114" 	href="img/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon-precomposed" 	sizes="144x144" 	href="img/touch-icon-ipad-retina.png">
+    
+    <link rel="apple-touch-startup-image" href="img/startup-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image" href="img/startup-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
+    
+  </head>
+  <body class="">
+    <div class="flowtime">
+      {{#each slides }}
+      <div class="ft-section"
+        {{#if metadata.id}}
+	data-id="{{metadata.id}}"
+	{{else}}
+	data-id="{{id}}"
+	{{/if}}
+	
+	{{#each pages}}
+	<div class="ft-page"
+	     {{#if metadata.id }}
+	     data-id="{{metadata.id}}"
+	     {{else}}
+	     data-id="{{id}}"
+	     {{/if}}
+	     {{#if metadata.title}}
+	     data-title="{{metadata.title}}"
+	     {{/if}}>
+	  {{{ html }}}
+	</div>
+	{{/each}}
+      </div>
+      {{/each}}
+      <div class="loglog"></div>
+
+      <script src="js/flowtime/brav1toolbox.js"></script>
+      <script src="js/flowtime/flowtime.js"></script>
+      <script src="js/flowtime/prism.js"></script>
+
+      <script type="text/javascript">
+	  // Configuration API test
+	  Flowtime.showProgress(true);
+	  // Flowtime.fragmentsOnSide(true);
+	  // Flowtime.fragmentsOnBack(true);
+	  // Flowtime.useHistory(false);
+	  // Flowtime.slideInPx(true);
+	  // Flowtime.sectionsSlideToTop(true);
+	  // Flowtime.gridNavigation(false);
+	  // Flowtime.useOverviewVariant(true);
+	  Flowtime.parallaxInPx(true);
+	  Flowtime.mouseDragEnabled(true);
+	  //
+	  // event management
+	  Flowtime.addEventListener("flowtimenavigation", onNavigation, false);
+	  function onNavigation(e)
+	  {
+	  // console.log(cacheTitle + ' > ' + document.title.replace("Flowtime.js | ", ""));
+      cacheTitle = document.title.replace("Flowtime.js | ", "");
+      //console.log('section', e.section, 'sectionIndex', e.sectionIndex);
+      //console.log('page', e.page, 'pageIndex', e.);
+      //console.log('pastSectionIndex', e.pastSectionIndex, 'pastPageIndex', e.pastPageIndex);
+      //console.log('prevSection', e.prevSection);
+      //console.log('nextSection', e.nextSection);
+      //console.log('prevPage', e.prevPage);
+      //console.log('nextPage', e.nextPage);
+      //console.log('fragment', e.fragment, + 'fragmentIndex', e.fragmentIndex);
+      //console.log("isOverview", e.isOverview);
+      //console.log('progress:', e.progress, 'total:', e.total);
+      // var value = Math.round(e.progress * 100 / e.total);
+      // console.log('Completion: ' + value + '%');
+      }
+      // starts the application with configuration options
+      Flowtime.start();
+</script>
+  </body>
+</html>

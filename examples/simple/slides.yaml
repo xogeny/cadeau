@@ -4,6 +4,7 @@ metadata:
     - js/simple.js
   styles:
     - css/simple.css
+  engine: flowtime
 slides:
   Title:
     - <h1>This is the title</h1>

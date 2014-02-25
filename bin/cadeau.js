@@ -24,12 +24,8 @@ var data = yaml.load(raw, { filename: src });
 var preamble = "";
 var context = cadeau.processSlides(data, preamble);
 
-var ft = hb.compile(fs.readFileSync("flowtime.html", "utf8"));
-
-var result = ft(context);
-
 try {
     fs.mkdirSync(dst)
 } catch(e) {}
-cadeau.copyResources(data, path.join(dst));
-fs.writeFileSync(path.join(dst, "index.html"), result);
+cadeau.generate(context, dst);
+cadeau.copyResources(data, dst);
