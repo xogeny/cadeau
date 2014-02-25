@@ -7,16 +7,12 @@ var yaml = require('js-yaml');
 var cadeau = require('..');
 var path = require('path');
 
-console.log("process.argv = "+process.argv);
-
 if (process.argv.length!=4) {
     throw "Usage: "+process.argv[1]+" slides.yaml output.html";
 }
 
 var src = process.argv[2];
 var dst = process.argv[3];
-
-console.log("Loading yaml from: "+src);
 
 var raw = fs.readFileSync(src, "utf8");
 var data = yaml.load(raw, { filename: src });
