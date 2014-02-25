@@ -1,19 +1,4 @@
-<!DOCTYPE HTML>
-<!--[if IE 6]>
-<html id="ie6" lang="en-US" class="ie ie6 lt-ie9">
-<![endif]-->
-<!--[if IE 7]>
-<html id="ie7" lang="en-US" class="ie ie7 lt-ie9">
-<![endif]-->
-<!--[if IE 8]>
-<html id="ie8" lang="en-US" class="ie ie8 lt-ie9">
-<![endif]-->
-<!--[if gte IE 9]>
-<html lang="en-US" class="ie ie9">
-<![endif]-->
-<!--[if !(IE)]><!-->
 <html lang="en-US" class="">
-<!--<![endif]-->
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
@@ -29,7 +14,7 @@
 
     <meta name="description" content="Impact is a package manager for the Modelica language">
 
-    <title>Impact</title>
+    <title>{{metadata.title}}</title>
 
     {{#each metadata.scripts}}
     <script src="{{this}}"></script>
@@ -61,11 +46,11 @@
     <div class="flowtime">
       {{#each slides }}
       <div class="ft-section"
-        {{#if metadata.id}}
-	data-id="{{metadata.id}}"
-	{{else}}
-	data-id="{{id}}"
-	{{/if}}>
+           {{#if metadata.id}}
+	   data-id="{{metadata.id}}"
+	   {{else}}
+	   data-id="{{id}}"
+	   {{/if}}>
 	
 	{{#each pages}}
 	<div class="ft-page"
@@ -89,39 +74,25 @@
       <script src="js/flowtime/prism.js"></script>
 
       <script type="text/javascript">
-	  // Configuration API test
-	  Flowtime.showProgress(true);
-	  // Flowtime.fragmentsOnSide(true);
-	  // Flowtime.fragmentsOnBack(true);
-	  // Flowtime.useHistory(false);
-	  // Flowtime.slideInPx(true);
-	  // Flowtime.sectionsSlideToTop(true);
-	  // Flowtime.gridNavigation(false);
-	  // Flowtime.useOverviewVariant(true);
-	  Flowtime.parallaxInPx(true);
-	  Flowtime.mouseDragEnabled(true);
-	  //
-	  // event management
-	  Flowtime.addEventListener("flowtimenavigation", onNavigation, false);
-	  function onNavigation(e)
-	  {
-	  // console.log(cacheTitle + ' > ' + document.title.replace("Flowtime.js | ", ""));
-      cacheTitle = document.title.replace("Flowtime.js | ", "");
-      //console.log('section', e.section, 'sectionIndex', e.sectionIndex);
-      //console.log('page', e.page, 'pageIndex', e.);
-      //console.log('pastSectionIndex', e.pastSectionIndex, 'pastPageIndex', e.pastPageIndex);
-      //console.log('prevSection', e.prevSection);
-      //console.log('nextSection', e.nextSection);
-      //console.log('prevPage', e.prevPage);
-      //console.log('nextPage', e.nextPage);
-      //console.log('fragment', e.fragment, + 'fragmentIndex', e.fragmentIndex);
-      //console.log("isOverview", e.isOverview);
-      //console.log('progress:', e.progress, 'total:', e.total);
-      // var value = Math.round(e.progress * 100 / e.total);
-      // console.log('Completion: ' + value + '%');
-      }
-      // starts the application with configuration options
-      Flowtime.start();
-</script>
+	// Configuration API test
+	Flowtime.showProgress(true);
+	// Flowtime.fragmentsOnSide(true);
+	// Flowtime.fragmentsOnBack(true);
+	// Flowtime.useHistory(false);
+	// Flowtime.slideInPx(true);
+	// Flowtime.sectionsSlideToTop(true);
+	// Flowtime.gridNavigation(false);
+	// Flowtime.useOverviewVariant(true);
+	Flowtime.parallaxInPx(true);
+	Flowtime.mouseDragEnabled(true);
+	// event management
+	Flowtime.addEventListener("flowtimenavigation", onNavigation, false);
+	function onNavigation(e)
+	{
+	cacheTitle = document.title.replace("{{metadata.title}} | ", "");
+	}
+	// starts the application with configuration options
+	Flowtime.start();
+      </script>
   </body>
 </html>
