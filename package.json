@@ -30,7 +30,8 @@
     "handlebars": "~2.0.0-alpha.1",
     "marked": "~0.3.1",
     "fs-extra": "~0.8.1",
-    "html": "0.0.7"
+    "html": "0.0.7",
+    "cheerio": "~0.13.1"
   },
   "devDependencies": {
     "mocha": "~1.17.1"

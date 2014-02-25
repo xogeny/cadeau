@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
-var jade = require('jade');
-var hb = require('handlebars');
 var yaml = require('js-yaml');
 var cadeau = require('..');
 var path = require('path');

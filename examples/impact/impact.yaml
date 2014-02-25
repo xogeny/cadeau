@@ -1,0 +1,43 @@
+metadata:
+  title: Impact
+  static_path: static
+  engine: flowtime
+  styles:
+    - css/impact.css
+slides:
+  Title:
+    - title.html
+  Introduction:
+    - <splash><h1>Introduction</h1></splash>
+    - langs.html
+    - hist.html
+    - insp.html
+  How Impact Works (Dietmar):
+    metadata:
+      id: how
+      class: dietmar
+    pages:
+      - <splash><h1>How Impact Works</h1><img src="img/logo_glossy.svg"></splash>
+      - git.html
+      - libpage.html
+      - indexing.html
+  Command Line (Dietmar):
+    metadata:
+      id: cmdline
+      class: dietmar
+    pages:
+      - <splash><h1>Command Line (Dietmar)</h1></splash>
+      - pip.html
+      - search.html
+      - install.html
+  Additional Use Cases:
+    - <splash><h1>Additional Use Cases</h1></splash>
+    - tools.html
+    - private.html
+    - automation.html
+  Future Work:
+    - <splash><h1>Future Work</h1></splash>
+    - cmdline_future.html
+  Conclusions:
+    - conclusions.html
+    - thanks.html
