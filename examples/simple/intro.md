@@ -10,4 +10,4 @@ id: markdown-intro
 
 You can even do math:
 
-$$\dot{x} = (1-x)$$
+$$\dot{z} = (1-z)$$
