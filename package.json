@@ -25,7 +25,8 @@
   "homepage": "https://github.com/xogeny/cadeau",
   "dependencies": {
     "js-yaml": "~3.0.1",
-    "soupselect": "~0.2.0"
+    "soupselect": "~0.2.0",
+    "jade": "~1.1.5"
   },
   "devDependencies": {
     "mocha": "~1.17.1"
