@@ -1,0 +1,22 @@
+metadata:
+  title: Recon -- Web and network friendly simulation data formats
+  scripts:
+    - ./bower_components/marked/lib/marked.js
+  imports:
+    - elems.html
+  styles:
+    - css/recon.css
+slides:
+  Recon:
+    metadata:
+      id: section1
+    pages:
+      - title.html
+  Introduction:
+    - intro.html
+  What is Recon:
+    metadata:
+      id: recon
+    pages:
+      - what.html
+      - how.html

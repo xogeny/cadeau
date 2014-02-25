@@ -1,0 +1,33 @@
+{
+  "name": "cadeau",
+  "version": "0.1.0",
+  "description": "A slide management system for Javascript presentation frameworks",
+  "main": "lib/main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/xogeny/cadeau"
+  },
+  "keywords": [
+    "presentations",
+    "slides"
+  ],
+  "author": "Michael M. Tiller <michael.tiller@gmail.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/xogeny/cadeau/issues"
+  },
+  "homepage": "https://github.com/xogeny/cadeau",
+  "dependencies": {
+    "js-yaml": "~3.0.1",
+    "soupselect": "~0.2.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1"
+  }
+}
