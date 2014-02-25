@@ -30,7 +30,8 @@
     "marked": "~0.3.1",
     "fs-extra": "~0.8.1",
     "html": "0.0.7",
-    "cheerio": "~0.13.1"
+    "cheerio": "~0.13.1",
+    "argparse": "~0.1.15"
   },
   "devDependencies": {
     "mocha": "~1.17.1"

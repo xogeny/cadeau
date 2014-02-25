@@ -1,23 +1,53 @@
 #!/usr/bin/env node
 // -*- mode: javascript -*-
 
+
 /* Load dependencies */
 var fs = require('fs-extra');
 var yaml = require('js-yaml');
 var cadeau = require('..');
 var path = require('path');
+var cadjson = require('../package.json');
 
-/* Check the arguments.
-   TODO: Add argparse support at some point. */
-if (process.argv.length!=4) {
-    throw "Usage: "+process.argv[1]+" slides.yaml output.html";
-}
+var ArgumentParser = require('argparse').ArgumentParser;
+
+var parser = new ArgumentParser({
+  version: cadjson.version,
+  addHelp:true,
+  description: 'Cadeau slide management tool'
+});
+
+parser.addArgument(
+    [ '-w', '--watch' ],
+    {
+	defaultValue: false,
+	action: 'storeTrue',
+	help: 'Watch for changes in source material'
+    }
+);
+parser.addArgument(
+  [ '-s', '--slides' ],
+  {
+      defaultValue: "slides.yaml",
+      help: 'Slides file'
+  }
+);
+
+parser.addArgument(
+  [ '-o', '--output' ],
+  {
+      defaultValue: "output",
+      help: 'Output directory'
+  }
+);
+
+var args = parser.parseArgs();
 
 /* Pull out arguments */
-var src = process.argv[2];
-var dst = process.argv[3];
+var src = args.slides;
+var dst = args.output;
 
-var watch = true;
+var watch = args.watch;
 
 var generate = null;
 
