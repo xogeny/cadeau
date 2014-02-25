@@ -5,6 +5,7 @@ var jade = require('jade');
 var hb = require('handlebars');
 var yaml = require('js-yaml');
 var cadeau = require('..');
+var path = require('path');
 
 console.log("process.argv = "+process.argv);
 
@@ -21,10 +22,14 @@ var raw = fs.readFileSync(src, "utf8");
 var data = yaml.load(raw, { filename: src });
 
 var preamble = "";
-var context = cadeau.process_slides(data, preamble);
+var context = cadeau.processSlides(data, preamble);
 
 var ft = hb.compile(fs.readFileSync("flowtime.html", "utf8"));
 
 var result = ft(context);
 
-fs.writeFileSync(dst, result);
+try {
+    fs.mkdirSync(dst)
+} catch(e) {}
+cadeau.copyResources(data, path.join(dst));
+fs.writeFileSync(path.join(dst, "index.html"), result);
