@@ -9,9 +9,7 @@ slides:
     - title.html
   Introduction:
     - <splash><h1>Introduction</h1></splash>
-    - langs.html
-    - hist.html
-    - insp.html
+    - intro/slides.yaml
   How Impact Works (Dietmar):
     metadata:
       id: how
