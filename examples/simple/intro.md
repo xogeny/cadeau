@@ -7,3 +7,7 @@ id: markdown-intro
 
    * Item 1
    * Item 2
+
+You can even do math:
+
+$$\dot{x} = (1-x)$$
