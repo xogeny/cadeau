@@ -1,7 +1,5 @@
 metadata:
   title: Impact
-  static_path: static
-  engine: flowtime
   styles:
     - css/impact.css
 slides:
