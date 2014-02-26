@@ -3,6 +3,9 @@
   "version": "0.2.1",
   "description": "A slide management system for Javascript presentation frameworks",
   "main": "lib/main.js",
+  "bin": {
+    "cadeau": "bin/cadeau"
+  },
   "directories": {
     "test": "test"
   },
