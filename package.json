@@ -31,7 +31,8 @@
     "fs-extra": "~0.8.1",
     "html": "0.0.7",
     "cheerio": "~0.13.1",
-    "argparse": "~0.1.15"
+    "argparse": "~0.1.15",
+    "connect": "~2.13.0"
   },
   "devDependencies": {
     "mocha": "~1.17.1"
