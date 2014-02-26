@@ -1,0 +1,21 @@
+<html lang="en-US" class="">
+  <head>
+    <title>Outline for {{metadata.title}}</title>
+  </head>
+  <body>
+    <h1>Outline</h1>
+    <ol>
+      {{#each slides}}
+      <li>{{id}}
+	<ol>
+	  {{#each pages}}
+	  <li>
+	    {{id}} (File: {{file}})
+	  </li>
+	  {{/each}}
+	</ol>
+      </li>
+      {{/each}}
+    </ol>
+  </body>
+</html>
