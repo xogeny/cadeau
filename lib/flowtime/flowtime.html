@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="css/flowtime/flowtime.css">
     <link rel="stylesheet" href="css/flowtime/default.css">
     <link rel="stylesheet" href="css/flowtime/prism.css">
+    <link rel="stylesheet" href="css/flowtime/cadeau.css">
 
     {{#each metadata.styles}}
     <link rel="stylesheet" href="{{this}}">
@@ -70,6 +71,9 @@
 	     {{#if metadata.title}}
 	     data-title="{{metadata.title}}"
 	     {{/if}}>
+	  {{#if ../../metadata.draft }}
+	  <p class="c-file-spec">File: {{file}}</p>
+	  {{/if}}
 	  {{{ html }}}
 	</div>
 	{{/each}}
