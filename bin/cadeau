@@ -91,7 +91,7 @@ generate = function () {
        to insert its own resources to overwrite those added by
        the backend engine.
     */
-    cadeau.copyResources(data, dst);
+    cadeau.copyResources(data, watchFile, dst);
 }
 
 watchFile(src);
