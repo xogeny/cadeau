@@ -7,7 +7,7 @@ metadata:
   engine: flowtime
 slides:
   Title:
-    - <splash><h1>This is the title</h1></splash>
-    - <splash><h1>This is the title</h1></splash>
+    - <hero><div class="page-title"><h1>This is the title</h1></div></hero>
+    - <hero><h1>This is the title</h1></hero>
   Introduction:
     - intro_slide_pack.yaml
