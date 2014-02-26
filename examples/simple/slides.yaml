@@ -10,6 +10,4 @@ slides:
     - <splash><h1>This is the title</h1></splash>
     - <splash><h1>This is the title</h1></splash>
   Introduction:
-    - intro.html
-    - intro.jade
-    - intro.md
+    - intro_slide_pack.yaml
