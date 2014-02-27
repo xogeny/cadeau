@@ -3,6 +3,7 @@
     <title>Outline for {{metadata.title}}</title>
   </head>
   <body>
+    <p><a href="/">&larr; back to presentation</a></p>
     <h1>Outline</h1>
     <ol>
       {{#each slides}}
@@ -10,7 +11,7 @@
 	<ol>
 	  {{#each pages}}
 	  <li>
-	    {{id}} (File: {{file}})
+	    {{id}} (File: <code>{{file}}</code>)
 	  </li>
 	  {{/each}}
 	</ol>
