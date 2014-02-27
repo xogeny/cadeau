@@ -42,7 +42,16 @@ By adding the `c-step` class to an element, you are indicating that
 that element is one step in a step-by-step reveal process on the
 slide.
 
-Any content marked with the `c-step` class will remain visible (but
+Any content marked with the `c-step` class will remain visible when
+the next piece of content is rendered.
+
+## `c-dim`
+
+By adding the `c-step` class to an element, you are indicating that
+that element is one step in a step-by-step reveal process on the
+slide.
+
+Any content marked with the `c-dim` class will remain visible (but
 de-emphasized, in some cases) when the next piece of content is
 rendered.
 

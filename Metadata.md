@@ -46,15 +46,6 @@ These files will be copied, just like the contents of `static_path`
 but they will **also** be added as Javascript files in any generated
 HTML.
 
-## `templates`
-
-Values: A list of template files
-Default: []
-
-These files will be copied, just like the contents of `static_path`
-but they will **also** be added as handlebars templates in any
-generated HTML.
-
 # Section metadata
 
 # Slide metadata
