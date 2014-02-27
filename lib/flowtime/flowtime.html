@@ -3,16 +3,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="author" content="marcolago">
+    <!-- <meta name="author" content="marcolago"> -->
 
-    <meta property="og:title" content="Impact -- A Modelica Package Manager">
+    <meta property="og:title" content="{{metadata.title}}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://github.com/xogeny/impact">
-    <meta property="og:image" 
-	  content="https://raw2.github.com/xogeny/impact/master/images/logo_glossy.svg">
-    <meta property="og:site_name" content="Impact">
+    {{#if metadata.url }}
+    <meta property="og:url" content="{{metadata.url}}">
+    {{/if}}
+    {{#if metadata.image }}
+    <meta property="og:image" content="{{metadata.image}}">
+    {{/if}}
+    <meta property="og:site_name" content="{{metadata.title}}">
 
-    <meta name="description" content="Impact is a package manager for the Modelica language">
+    {{#if metadata.desc }}
+    <meta name="description" content="{{metadata.desc}}">
+    {{/if }}
+
+    {{#if metadata.favicon }}
+    <link rel="icon" href="{{metadata.favicon}}">
+    {{/if}}
 
     <title>{{metadata.title}}</title>
 
