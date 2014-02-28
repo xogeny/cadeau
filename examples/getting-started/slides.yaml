@@ -1,0 +1,7 @@
+metadata:
+  title: Getting Started
+slides:
+  Introduction:
+    - <hero><h1>Introducing Cadeau</h1><hero>
+    - features.html
+

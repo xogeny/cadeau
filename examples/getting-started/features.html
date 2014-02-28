@@ -1,0 +1,13 @@
+{% macro feature(desc) %}
+<li class="c-step"><h4>{{desc|safe}}</h4></li>
+{% endmacro %}
+
+<h1>Features</h1>
+
+<ul>
+{{ feature('Separation of presentation, from slides, from backend renderer') }}
+{{ feature('Ability to group slides together by topic for easy mixing and matching of slide groups') }}
+{{ feature('Abstracted markup to support multiple backends') }}
+{{ feature('Support for JADE, HTML, Markdown formatted content') }}
+{{ feature('Built-in HTML templating support using <a href="http://paularmstrong.github.io/swig/">Swig</a>') }}
+</ul>
