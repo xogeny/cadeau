@@ -4,3 +4,7 @@ p.c-file-spec {
     right: 10px;
     font-size: 100%;
 }
+
+li.c-nobullet:before {
+    content: ""
+}

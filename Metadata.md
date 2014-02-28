@@ -101,6 +101,22 @@ Default: true
 Indicates whether the presentation should be compatible with "presenter"
 devices like the Logitech R400.
 
+## `animation`
+
+Values: true | false
+Default: true
+
+Can be used to suppress animation (*e.g.,* during content review).
+
+## `includes`
+
+Values: array of filenames
+Default: []
+
+A list of files to be included when processing all html files.  To
+include a file for only certain slides, use the slide-level `include`
+metadata.
+
 # Section metadata
 
 # Slide metadata
