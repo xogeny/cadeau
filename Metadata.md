@@ -93,6 +93,14 @@ These files will be copied, just like the contents of `static_path`
 but they will **also** be added as Javascript files in any generated
 HTML.
 
+## `clicker`
+
+Values: true | false
+Default: true
+
+Indicates whether the presentation should be compatible with "presenter"
+devices like the Logitech R400.
+
 # Section metadata
 
 # Slide metadata
