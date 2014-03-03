@@ -117,6 +117,15 @@ A list of files to be included when processing all html files.  To
 include a file for only certain slides, use the slide-level `include`
 metadata.
 
+## `package`
+
+Values: Object
+Default: null
+
+If not `null`, a Node.js `package.json` file will be generated and
+this data will be included in it.  This is useful, for example, in
+generating presentations that run seamlessly under node-webkit.
+
 # Section metadata
 
 # Slide metadata
