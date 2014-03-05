@@ -51,6 +51,13 @@ parser.addArgument(
   }
 );
 
+parser.addArgument(
+  [ '-n', '--node' ],
+  {
+      help: 'Name of node webkit bundle (should end in .nw)'
+  }
+);
+
 var args = parser.parseArgs();
 
 /* Pull out arguments */
@@ -92,6 +99,23 @@ generate = function () {
        the backend engine.
     */
     cadeau.copyResources(data, watchFile, dst);
+
+    /* Create zip file */
+    if (args.node) {
+	var spawn = require('child_process').spawn;
+	console.log("Generating node-webkit output at "+args.node);
+	var zip = spawn('zip', ['-r', path.join("..", args.node), '.'], { cwd: "output" });
+
+	zip.stderr.on('data', function (data) {
+	    console.log('Zip: ' + data);
+	});
+
+	zip.on('close', function (code) {
+	    console.log('Zip of '+args.node+' created, exited with code ' + code);
+	});
+    } else {
+	console.log("No package metadata");
+    }
 }
 
 watchFile(src);
