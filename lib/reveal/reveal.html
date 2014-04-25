@@ -1,8 +1,11 @@
 <html lang="en-US" class="">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!--
     <meta name="apple-mobile-web-app-capable" content="yes">
+    -->
 
     <meta property="og:title" content="{{metadata.title}}">
     <meta property="og:type" content="website">
@@ -39,27 +42,18 @@
     {{#each metadata.styles}}
     <link rel="stylesheet" href="{{this}}">
     {{/each}}
-    
-    <!--
-    <link rel="apple-touch-icon-precomposed"
-	  href="img/flowtime/touch-icon-iphone.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	  href="img/flowtime/touch-icon-ipad.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	  href="img/flowtime/touch-icon-iphone-retina.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	  href="img/flowtime/touch-icon-ipad-retina.png">
-    
-    <link rel="apple-touch-startup-image"
-	  href="img/flowtime/startup-640x920.png"
-	  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)">
-    <link rel="apple-touch-startup-image"
-	  href="img/flowtime/startup-640x1096.png"
-	  media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
-    -->
-    
   </head>
   <body class="">
+    <div class="reveal">
+      <div class="slides">
+        <section>Single Horizontal Slide</section>
+        <section>
+          <section>Vertical Slide 1</section>
+          <section>Vertical Slide 2</section>
+        </section>
+      </div>
+    </div>
+    <!--
     <div class="reveal">
       <div class="slides">
 	{{#each slides }}
@@ -77,86 +71,13 @@
 	{{/each}}
       </div>
     </div>
+    -->
 
     <script src="js/reveal.min.js"></script>
     <script src="js/prism.js"></script>
 
     <script>
       Reveal.initialize({
-
-      // Display controls in the bottom right corner
-      controls: true,
-
-      // Display a presentation progress bar
-      progress: true,
-
-      // Display the page number of the current slide
-      slideNumber: false,
-
-      // Push each slide change to the browser history
-      history: false,
-
-      // Enable keyboard shortcuts for navigation
-      keyboard: true,
-
-      // Enable the slide overview mode
-      overview: true,
-
-      // Vertical centering of slides
-      center: true,
-
-      // Enables touch navigation on devices with touch input
-      touch: true,
-
-      // Loop the presentation
-      loop: false,
-
-      // Change the presentation direction to be RTL
-      rtl: false,
-
-      // Turns fragments on and off globally
-      fragments: true,
-
-      // Flags if the presentation is running in an embedded mode,
-      // i.e. contained within a limited portion of the screen
-      embedded: false,
-
-      // Number of milliseconds between automatically proceeding to the
-      // next slide, disabled when set to 0, this value can be overwritten
-      // by using a data-autoslide attribute on your slides
-      autoSlide: 0,
-
-      // Stop auto-sliding after user input
-      autoSlideStoppable: true,
-
-      // Enable slide navigation via mouse wheel
-      mouseWheel: false,
-
-      // Hides the address bar on mobile devices
-      hideAddressBar: true,
-
-      // Opens links in an iframe preview overlay
-      previewLinks: false,
-
-      // Transition style
-      transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-      // Transition speed
-      transitionSpeed: 'default', // default/fast/slow
-
-      // Transition style for full page slide backgrounds
-      backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
-
-      // Number of slides away from the current that are visible
-      viewDistance: 3,
-
-      // Parallax background image
-      parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
-
-      // Parallax background size
-      parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
-
-
       });
     </script>
     {{#if metadata.math}}
