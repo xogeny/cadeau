@@ -1,0 +1,22 @@
+<html lang="en-US" class="">
+  <head>
+    <title>Outline for {{metadata.title}}</title>
+  </head>
+  <body>
+    <p><a href="javascript:history.back()">&larr; back to presentation</a></p>
+    <h1>Outline</h1>
+    <ol>
+      {{#each slides}}
+      <li>{{id}}
+	<ol>
+	  {{#each pages}}
+	  <li>
+	    {{id}} (File: <b><code>{{file}}</code></b>)
+	  </li>
+	  {{/each}}
+	</ol>
+      </li>
+      {{/each}}
+    </ol>
+  </body>
+</html>

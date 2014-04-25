@@ -1,0 +1,127 @@
+<html lang="en-US" class="">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- <meta name="author" content="marcolago"> -->
+
+    <meta property="og:title" content="{{metadata.title}}">
+    <meta property="og:type" content="website">
+    {{#if metadata.url }}
+    <meta property="og:url" content="{{metadata.url}}">
+    {{/if}}
+    {{#if metadata.image }}
+    <meta property="og:image" content="{{metadata.image}}">
+    {{/if}}
+    <meta property="og:site_name" content="{{metadata.title}}">
+
+    {{#if metadata.desc }}
+    <meta name="description" content="{{metadata.desc}}">
+    {{/if }}
+
+    {{#if metadata.favicon }}
+    <link rel="icon" href="{{metadata.favicon}}">
+    {{/if}}
+
+    <title>Reveal: {{metadata.title}}</title>
+
+    {{#each metadata.scripts}}
+    <script src="{{this}}"></script>
+    {{/each}}
+
+    {{#each metadata.imports}}
+    <link rel="import" href="{{this}}">
+    {{/each}}
+
+    <link rel="stylesheet" href="css/flowtime/reset.css">
+    <link rel="stylesheet" href="css/flowtime/flowtime.css">
+    <link rel="stylesheet" href="css/flowtime/default.css">
+    <link rel="stylesheet" href="css/flowtime/prism.css">
+    <link rel="stylesheet" href="css/flowtime/cadeau.css">
+
+    {{#each metadata.styles}}
+    <link rel="stylesheet" href="{{this}}">
+    {{/each}}
+    
+    <link rel="apple-touch-icon-precomposed"
+	  href="img/flowtime/touch-icon-iphone.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+	  href="img/flowtime/touch-icon-ipad.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+	  href="img/flowtime/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+	  href="img/flowtime/touch-icon-ipad-retina.png">
+    
+    <link rel="apple-touch-startup-image"
+	  href="img/flowtime/startup-640x920.png"
+	  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image"
+	  href="img/flowtime/startup-640x1096.png"
+	  media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
+    
+  </head>
+  <body class="">
+    <div class="flowtime">
+      {{#each slides }}
+      <div class="ft-section"
+           {{#if metadata.id}}
+	   data-id="{{metadata.id}}"
+	   {{else}}
+	   data-id="{{id}}"
+	   {{/if}}>
+	
+	{{#each pages}}
+	<div class="ft-page"
+	     {{#if metadata.id }}
+	     data-id="{{metadata.id}}"
+	     c-id="{{metadata.id}}"
+	     {{else}}
+	     data-id="{{id}}"
+	     {{/if}}
+	     {{#if metadata.title}}
+	     data-title="{{metadata.title}}"
+	     {{/if}}>
+	  {{#if ../../metadata.draft }}
+	  <p class="c-file-spec"><a href="outline.html">File: <code>{{file}}</code></a></p>
+	  {{/if}}
+	  {{{ html }}}
+	</div>
+	{{/each}}
+      </div>
+      {{/each}}
+      <div class="loglog"></div>
+
+      <script src="js/flowtime/brav1toolbox.js"></script>
+      <script src="js/flowtime/flowtime.js"></script>
+      <script src="js/flowtime/prism.js"></script>
+
+      {{#if metadata.math}}
+      <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+      {{/if}}
+
+      <script type="text/javascript">
+	// Configuration API test
+	Flowtime.showProgress(true);
+	// Flowtime.fragmentsOnSide(true);
+	// Flowtime.fragmentsOnBack(true);
+	// Flowtime.useHistory(false);
+	// Flowtime.slideInPx(true);
+	// Flowtime.sectionsSlideToTop(true);
+	// Flowtime.gridNavigation(false);
+	// Flowtime.useOverviewVariant(true);
+	Flowtime.parallaxInPx(true);
+	Flowtime.mouseDragEnabled(true);
+	Flowtime.clicker({{metadata.clicker}});
+	// event management
+	Flowtime.addEventListener("flowtimenavigation", onNavigation, false);
+	function onNavigation(e)
+	{
+	cacheTitle = document.title.replace("{{metadata.title}} | ", "");
+	}
+	// starts the application with configuration options
+	Flowtime.start();
+      </script>
+  </body>
+</html>
