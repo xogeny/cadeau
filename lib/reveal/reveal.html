@@ -3,7 +3,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <!-- <meta name="author" content="marcolago"> -->
 
     <meta property="og:title" content="{{metadata.title}}">
     <meta property="og:type" content="website">
@@ -23,7 +22,7 @@
     <link rel="icon" href="{{metadata.favicon}}">
     {{/if}}
 
-    <title>Reveal: {{metadata.title}}</title>
+    <title>{{metadata.title}}</title>
 
     {{#each metadata.scripts}}
     <script src="{{this}}"></script>
@@ -33,16 +32,15 @@
     <link rel="import" href="{{this}}">
     {{/each}}
 
-    <link rel="stylesheet" href="css/flowtime/reset.css">
-    <link rel="stylesheet" href="css/flowtime/flowtime.css">
-    <link rel="stylesheet" href="css/flowtime/default.css">
-    <link rel="stylesheet" href="css/flowtime/prism.css">
-    <link rel="stylesheet" href="css/flowtime/cadeau.css">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css">
+    <link rel="stylesheet" href="css/print/pdf.css">
 
     {{#each metadata.styles}}
     <link rel="stylesheet" href="{{this}}">
     {{/each}}
     
+    <!--
     <link rel="apple-touch-icon-precomposed"
 	  href="img/flowtime/touch-icon-iphone.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72"
@@ -58,70 +56,113 @@
     <link rel="apple-touch-startup-image"
 	  href="img/flowtime/startup-640x1096.png"
 	  media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
+    -->
     
   </head>
   <body class="">
-    <div class="flowtime">
-      {{#each slides }}
-      <div class="ft-section"
-           {{#if metadata.id}}
-	   data-id="{{metadata.id}}"
-	   {{else}}
-	   data-id="{{id}}"
-	   {{/if}}>
+    <div class="reveal">
+      <div class="slides">
+	{{#each slides }}
+	<section>
 	
-	{{#each pages}}
-	<div class="ft-page"
-	     {{#if metadata.id }}
-	     data-id="{{metadata.id}}"
-	     c-id="{{metadata.id}}"
-	     {{else}}
-	     data-id="{{id}}"
-	     {{/if}}
-	     {{#if metadata.title}}
-	     data-title="{{metadata.title}}"
-	     {{/if}}>
-	  {{#if ../../metadata.draft }}
-	  <p class="c-file-spec"><a href="outline.html">File: <code>{{file}}</code></a></p>
-	  {{/if}}
-	  {{{ html }}}
-	</div>
+	  {{#each pages}}
+	  <section>
+	    {{#if ../../metadata.draft }}
+	    <p class="c-file-spec"><a href="outline.html">File: <code>{{file}}</code></a></p>
+	    {{/if}}
+	    {{{ html }}}
+	  </section>
+	  {{/each}}
+	</section>
 	{{/each}}
       </div>
-      {{/each}}
-      <div class="loglog"></div>
+    </div>
 
-      <script src="js/flowtime/brav1toolbox.js"></script>
-      <script src="js/flowtime/flowtime.js"></script>
-      <script src="js/flowtime/prism.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script src="js/prism.js"></script>
 
-      {{#if metadata.math}}
-      <script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-      </script>
-      {{/if}}
+    <script>
+      Reveal.initialize({
 
-      <script type="text/javascript">
-	// Configuration API test
-	Flowtime.showProgress(true);
-	// Flowtime.fragmentsOnSide(true);
-	// Flowtime.fragmentsOnBack(true);
-	// Flowtime.useHistory(false);
-	// Flowtime.slideInPx(true);
-	// Flowtime.sectionsSlideToTop(true);
-	// Flowtime.gridNavigation(false);
-	// Flowtime.useOverviewVariant(true);
-	Flowtime.parallaxInPx(true);
-	Flowtime.mouseDragEnabled(true);
-	Flowtime.clicker({{metadata.clicker}});
-	// event management
-	Flowtime.addEventListener("flowtimenavigation", onNavigation, false);
-	function onNavigation(e)
-	{
-	cacheTitle = document.title.replace("{{metadata.title}} | ", "");
-	}
-	// starts the application with configuration options
-	Flowtime.start();
-      </script>
+      // Display controls in the bottom right corner
+      controls: true,
+
+      // Display a presentation progress bar
+      progress: true,
+
+      // Display the page number of the current slide
+      slideNumber: false,
+
+      // Push each slide change to the browser history
+      history: false,
+
+      // Enable keyboard shortcuts for navigation
+      keyboard: true,
+
+      // Enable the slide overview mode
+      overview: true,
+
+      // Vertical centering of slides
+      center: true,
+
+      // Enables touch navigation on devices with touch input
+      touch: true,
+
+      // Loop the presentation
+      loop: false,
+
+      // Change the presentation direction to be RTL
+      rtl: false,
+
+      // Turns fragments on and off globally
+      fragments: true,
+
+      // Flags if the presentation is running in an embedded mode,
+      // i.e. contained within a limited portion of the screen
+      embedded: false,
+
+      // Number of milliseconds between automatically proceeding to the
+      // next slide, disabled when set to 0, this value can be overwritten
+      // by using a data-autoslide attribute on your slides
+      autoSlide: 0,
+
+      // Stop auto-sliding after user input
+      autoSlideStoppable: true,
+
+      // Enable slide navigation via mouse wheel
+      mouseWheel: false,
+
+      // Hides the address bar on mobile devices
+      hideAddressBar: true,
+
+      // Opens links in an iframe preview overlay
+      previewLinks: false,
+
+      // Transition style
+      transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+      // Transition speed
+      transitionSpeed: 'default', // default/fast/slow
+
+      // Transition style for full page slide backgrounds
+      backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+
+      // Number of slides away from the current that are visible
+      viewDistance: 3,
+
+      // Parallax background image
+      parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+      // Parallax background size
+      parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+
+
+      });
+    </script>
+    {{#if metadata.math}}
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    {{/if}}
   </body>
 </html>
