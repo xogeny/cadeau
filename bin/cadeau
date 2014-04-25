@@ -54,6 +54,8 @@ parser.addArgument(
 parser.addArgument(
   [ '-n', '--node' ],
   {
+      defaultValue: false,
+      action: 'storeTrue',
       help: 'Name of node webkit bundle (should end in .nw)'
   }
 );
@@ -113,8 +115,6 @@ generate = function () {
 	zip.on('close', function (code) {
 	    console.log('Zip of '+args.node+' created, exited with code ' + code);
 	});
-    } else {
-	console.log("No package metadata");
     }
 }
 
