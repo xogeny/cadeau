@@ -1,7 +1,16 @@
 metadata:
   title: Getting Started
+  engine: reveal
 slides:
   Introduction:
     - <hero><h1>Introducing Cadeau</h1><hero>
     - features.html
-
+  First Presentation:
+    - init.html
+    - init_pres.html
+  Adding Structure:
+    - structure.html
+    - struct_pres.html
+  Presentation Metadata:
+    - metadata.html
+    - metadata_pres.html

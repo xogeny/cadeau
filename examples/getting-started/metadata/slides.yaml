@@ -1,0 +1,9 @@
+metadata:
+  engine: reveal
+slides:
+  Section 1:
+    - <h1>Introduction</h1>
+    - <h1>Background</h1>
+  Section 2:
+    - <h1>Theory</h1>
+    - <h1>Practice</h1>
