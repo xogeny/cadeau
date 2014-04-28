@@ -1,6 +1,8 @@
 metadata:
   title: Getting Started
-  engine: reveal
+  engine: flowtime
+  styles:
+    - css/main.css
 slides:
   Introduction:
     - <hero><h1>Introducing Cadeau</h1><hero>
@@ -11,9 +13,13 @@ slides:
   Adding Structure:
     - structure.html
     - struct_pres.html
+  Slide Decks:
+    - topic/slides.yaml
   Presentation Metadata:
     - metadata.html
     - metadata_pres.html
   Embedding:
     - embedding.html
+    - embedding_book.html
+    - embedding_app.html
     - embedding_pres.html
