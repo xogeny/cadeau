@@ -14,3 +14,6 @@ slides:
   Presentation Metadata:
     - metadata.html
     - metadata_pres.html
+  Embedding:
+    - embedding.html
+    - embedding_pres.html
