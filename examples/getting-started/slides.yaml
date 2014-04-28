@@ -13,6 +13,8 @@ slides:
   Adding Structure:
     - structure.html
     - struct_pres.html
+  Animations:
+    - <h1>TODO</h1>
   Slide Decks:
     - topic/slides.yaml
   Presentation Metadata:
