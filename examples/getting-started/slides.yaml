@@ -3,6 +3,8 @@ metadata:
   engine: flowtime
   styles:
     - css/main.css
+  scripts:
+    - http://plot.ly/static/CACHE/js/e39301e649a3.js
 slides:
   Introduction:
     - <hero><h1>Introducing Cadeau</h1><hero>
