@@ -1,0 +1,22 @@
+<html lang="en-US" class="">
+  <head>
+    <title>Outline for {{metadata.title}}</title>
+  </head>
+  <body>
+    <p><a href="javascript:history.back()">&larr; back to presentation</a></p>
+    <h1>Outline</h1>
+    <ol>
+      {% for slide in slides %}
+      <li>{{slide.id}}
+	<ol>
+	  {% for page in pages %}
+	  <li>
+	    {{page.id}} (File: <b><code>{{page.file}}</code></b>)
+	  </li>
+	  {% endfor %}
+	</ol>
+      </li>
+      {% endfor %}
+    </ol>
+  </body>
+</html>
