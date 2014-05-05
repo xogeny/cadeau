@@ -12,9 +12,9 @@ var cadjson = require('../package.json');
 var ArgumentParser = require('argparse').ArgumentParser;
 
 var parser = new ArgumentParser({
-  version: cadjson.version,
-  addHelp:true,
-  description: 'Cadeau slide management tool'
+    version: cadjson.version,
+    addHelp:true,
+    description: 'Cadeau slide management tool'
 });
 
 parser.addArgument(
@@ -27,37 +27,44 @@ parser.addArgument(
 );
 
 parser.addArgument(
-  [ '-s', '--slides' ],
-  {
-      defaultValue: "slides.yaml",
-      help: 'Slides file'
-  }
+    [ '-s', '--slides' ],
+    {
+	defaultValue: "slides.yaml",
+	help: 'Slides file'
+    }
 );
 
 parser.addArgument(
-  [ '-p', '--port' ],
-  {
-      defaultValue: 8000,
-      type: 'int',
-      help: 'Port for local server'
-  }
+    [ '-p', '--port' ],
+    {
+	defaultValue: 8000,
+	type: 'int',
+	help: 'Port for local server'
+    }
 );
 
 parser.addArgument(
-  [ '-o', '--output' ],
-  {
-      defaultValue: "output",
-      help: 'Output directory'
-  }
+    [ '-o', '--output' ],
+    {
+	defaultValue: "output",
+	help: 'Output directory'
+    }
 );
 
 parser.addArgument(
-  [ '-n', '--node' ],
-  {
-      defaultValue: false,
-      action: 'storeTrue',
-      help: 'Name of node webkit bundle (should end in .nw)'
-  }
+    [ '-e', '--engine' ],
+    {
+	help: "Engine"
+    }
+);
+
+parser.addArgument(
+    [ '-n', '--node' ],
+    {
+	defaultValue: false,
+	action: 'storeTrue',
+	help: 'Name of node webkit bundle (should end in .nw)'
+    }
 );
 
 var args = parser.parseArgs();
@@ -83,9 +90,15 @@ var watchFile = function(f) {
 generate = function () {
     /* Read the presentation file */
     var raw = fs.readFileSync(src, "utf8");
+
     /* Transform it into a data structure. */
     var data = yaml.load(raw, { filename: src });
 
+    /* Tweak metadata based on some command line switches */
+    if (args.engine!==null) {
+	if (!data.hasOwnProperty("metadata")) data.metadata = {};
+	data.metadata.engine = args.engine;
+    }
 
     if (watch) { console.log("Generating presentation files to "+dst); }
     var context = cadeau.processSlides(data, watchFile);
