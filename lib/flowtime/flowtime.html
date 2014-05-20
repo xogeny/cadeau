@@ -111,8 +111,10 @@
 	// Flowtime.sectionsSlideToTop(true);
 	// Flowtime.gridNavigation(false);
 	// Flowtime.useOverviewVariant(true);
+	Flowtime.setTouchNavigation(false);
 	Flowtime.parallaxInPx(true);
-	Flowtime.mouseDragEnabled(true);
+	Flowtime.mouseDragEnabled(false);
+	Flowtime.enableNavigation(true, true, {{metadata.touch}}, {{metadata.touch}});
 	Flowtime.clicker({{metadata.clicker}});
 	// event management
 	Flowtime.addEventListener("flowtimenavigation", onNavigation, false);
