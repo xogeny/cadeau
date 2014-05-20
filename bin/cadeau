@@ -67,6 +67,14 @@ parser.addArgument(
     }
 );
 
+parser.addArgument(
+    [ '-d', '--dirs' ],
+    {
+	defaultValue: null,
+	help: "comma separated list of directories and port numbers"
+    }
+);
+
 var args = parser.parseArgs();
 
 /* Pull out arguments */
@@ -87,6 +95,8 @@ var watchFile = function(f) {
     }
 }
 
+var metadata = {}
+
 generate = function () {
     /* Read the presentation file */
     var raw = fs.readFileSync(src, "utf8");
@@ -99,6 +109,12 @@ generate = function () {
 	if (!data.hasOwnProperty("metadata")) data.metadata = {};
 	data.metadata.engine = args.engine;
     }
+
+    if (args.dirs)
+	data.metadata.serve = args.dirs.split(",");
+
+
+    metadata = data.metadata;
 
     if (watch) { console.log("Generating presentation files to "+dst); }
     var context = cadeau.processSlides(data, watchFile);
@@ -141,6 +157,14 @@ if (watch) {
     connect()
 	.use(connect.static(dst))
 	.listen(args.port);
+
+    for(var i=0;i<metadata.serve.length;i++) {
+	var info = metadata.serve[i].split(":");
+	console.log("Spawning server for "+info[0]+" on port "+info[1]);
+	connect()
+	    .use(connect.static(info[0]))
+	    .listen(info[1]);
+    }
 
     console.log("Running server on port "+args.port);
     console.log("Watching for changes");
