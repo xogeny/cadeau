@@ -138,7 +138,6 @@ quickly change the markup as well, *e.g.,*
 </ul>
 ```
 
-
 # Installation
 
 ## Prerequisites
@@ -172,3 +171,36 @@ If you get an error when running that command, and it contains this line somwher
 You will need to run the install via sudo:
 
     sudo npm install -g cadeau
+
+# PDF Generation
+
+## How
+
+I added the ability to create PDF slides for presentations.  This
+works by using `PhantomJS` (headless WebKit) to render each slide and
+then using GhostScript to concatenate all the slides together.  PDF
+generation is currently a two step process.  First, you must run
+`cadeau` with both the `-w` and `-g/--pdf` options.  The `-g/--pdf` option will
+cause a script to be created in the local directory (where `cadeau`
+was run) called `makepdf.sh`.  While `cadeau` is still running (in
+watch mode, due to the `-w` flag), you can run this script to generate
+a PDF of the presentation.  **Please Note**: the script depends on
+having the `cadeau` running with the `-w` flag because it requires a
+server to be running that is serving the presentation.  As such, it is
+important that you do not kill the `cadeau` process before running the
+`makepdf.sh` script.
+
+## Dependencies
+
+The `-g/--pdf` flag doesn't introduce any additional depdendencies.
+But in order to run it, you'll need to have both `PhantomJS` installed
+(globally) and GhostScript.
+
+To install `PhantomJS`, simply run:
+
+    npm install -g phantomjs
+
+On OSX, you can install GhostScript with:
+
+    brew install ghostscript
+
