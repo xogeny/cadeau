@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // -*- mode: javascript -*-
 
-
 /* Load dependencies */
 var fs = require('fs-extra');
 var yaml = require('js-yaml');
 var cadeau = require('..');
 var path = require('path');
 var cadjson = require('../package.json');
+var _ = require('lodash');
 
 var ArgumentParser = require('argparse').ArgumentParser;
 
@@ -20,58 +20,67 @@ var parser = new ArgumentParser({
 parser.addArgument(
     [ '-w', '--watch' ],
     {
-	defaultValue: false,
-	action: 'storeTrue',
-	help: 'Watch for changes in source material'
+		defaultValue: false,
+		action: 'storeTrue',
+		help: 'Watch for changes in source material'
+    }
+);
+
+parser.addArgument(
+    [ '-g', '--pdf' ],
+    {
+		defaultValue: false,
+		action: 'storeTrue',
+		help: 'Generate PDF creation script'
     }
 );
 
 parser.addArgument(
     [ '-s', '--slides' ],
     {
-	defaultValue: "slides.yaml",
-	help: 'Slides file'
+		defaultValue: "slides.yaml",
+		help: 'Slides file'
     }
 );
 
 parser.addArgument(
     [ '-p', '--port' ],
     {
-	defaultValue: 8000,
-	type: 'int',
-	help: 'Port for local server'
+		defaultValue: 8000,
+		type: 'int',
+		help: 'Port for local server'
     }
 );
 
 parser.addArgument(
     [ '-o', '--output' ],
     {
-	defaultValue: "output",
-	help: 'Output directory'
+		defaultValue: "output",
+		help: 'Output directory'
     }
 );
 
 parser.addArgument(
     [ '-e', '--engine' ],
     {
-	help: "Engine"
+		help: "Engine"
     }
 );
 
 parser.addArgument(
     [ '-n', '--node' ],
     {
-	defaultValue: false,
-	action: 'storeTrue',
-	help: 'Name of node webkit bundle (should end in .nw)'
+		defaultValue: false,
+		action: 'storeTrue',
+		help: 'Name of node webkit bundle (should end in .nw)'
     }
 );
 
 parser.addArgument(
     [ '-d', '--dirs' ],
     {
-	defaultValue: null,
-	help: "comma separated list of directories and port numbers"
+		defaultValue: null,
+		help: "comma separated list of directories and port numbers"
     }
 );
 
@@ -89,15 +98,23 @@ var watched = {};
 
 var watchFile = function(f) {
     if (watch) {
-	if (f in watched) return;
-	fs.watch(f, generate);
-	watched[f] = true;
+		if (f in watched) return;
+		fs.watch(f, generate);
+		watched[f] = true;
     }
 }
 
 var metadata = {}
 
 generate = function () {
+	var generateSlides = args.pdf;
+
+	if (generateSlides && !watch) {
+		console.log("Note: you have selected to create the PDF generation script.");
+		console.log("      This script requires that you run a local server, typically");
+		console.log("      using the '-w' command-line option, when executing the script");
+	}
+
     /* Read the presentation file */
     var raw = fs.readFileSync(src, "utf8");
 
@@ -106,12 +123,12 @@ generate = function () {
 
     /* Tweak metadata based on some command line switches */
     if (args.engine!==null) {
-	if (!data.hasOwnProperty("metadata")) data.metadata = {};
-	data.metadata.engine = args.engine;
+		if (!data.hasOwnProperty("metadata")) data.metadata = {};
+		data.metadata.engine = args.engine;
     }
 
     if (args.dirs)
-	data.metadata.serve = args.dirs.split(",");
+		data.metadata.serve = args.dirs.split(",");
 
 
     metadata = data.metadata;
@@ -119,10 +136,48 @@ generate = function () {
     if (watch) { console.log("Generating presentation files to "+dst); }
     var context = cadeau.processSlides(data, watchFile);
 
+	var scontexts = [];
+	var sdata = null;
+
+	if (generateSlides) {
+		_.forIn(data['slides'], function(slides, secname) {
+			_.forIn(slides, function(slide, i) {
+				sdata = _.clone(data, true);
+				sdata.slides = {"Slide": [slide]};
+				scontexts.push(cadeau.processSlides(sdata, watchFile));
+			});
+		});
+	}
+
     /* Make the directory, if we didn't already. */
     fs.mkdirsSync(dst);
     /* Run the code generator for the backend engine */
-    cadeau.generate(context, dst);
+    cadeau.generate(context, "index.html", dst);
+
+	if (generateSlides) {
+		var slidescript = fs.createWriteStream("makepdf.sh");
+		function lpad(str, length) {
+			while (str.length < length)
+				str = "0" + str;
+			return str;
+		}
+		var gscmd = "gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=index.pdf "+
+			path.join(dst, "_slide_*.pdf")
+		var rmcmd = "rm "+path.join(dst, "_slide_*.pdf");
+		_.forIn(scontexts, function(sctxt, i) {
+			var slidename = "_slide_"+lpad(i, 5);
+			var slidehtml = slidename+".html";
+			cadeau.generate(sctxt, slidehtml, dst);
+			var url = "http://localhost:"+args.port+"/"+slidehtml
+			var pdf = path.join(dst, slidename+".pdf");
+			var rasterize = path.join(path.dirname(module.filename),"rasterize")
+			var pdfcmd = rasterize+" "+url+" "+pdf+" 14in*10in";
+			slidescript.write(pdfcmd+"\n");
+		});
+		slidescript.write(gscmd+"\n");
+		slidescript.write(rmcmd+"\n");
+	}
+
     /* Copy presentation specific resources.
 
        Note, this is deliberatly done second to allow the presentation
@@ -133,17 +188,17 @@ generate = function () {
 
     /* Create zip file */
     if (args.node) {
-	var spawn = require('child_process').spawn;
-	console.log("Generating node-webkit output at "+args.node);
-	var zip = spawn('zip', ['-r', path.join("..", args.node), '.'], { cwd: "output" });
+		var spawn = require('child_process').spawn;
+		console.log("Generating node-webkit output at "+args.node);
+		var zip = spawn('zip', ['-r', path.join("..", args.node), '.'], { cwd: "output" });
 
-	zip.stderr.on('data', function (data) {
-	    console.log('Zip: ' + data);
-	});
+		zip.stderr.on('data', function (data) {
+			console.log('Zip: ' + data);
+		});
 
-	zip.on('close', function (code) {
-	    console.log('Zip of '+args.node+' created, exited with code ' + code);
-	});
+		zip.on('close', function (code) {
+			console.log('Zip of '+args.node+' created, exited with code ' + code);
+		});
     }
 }
 
@@ -155,15 +210,15 @@ if (watch) {
     var connect = require('connect');
 
     connect()
-	.use(connect.static(dst))
-	.listen(args.port);
+		.use(connect.static(dst))
+		.listen(args.port);
 
     for(var i=0;i<metadata.serve.length;i++) {
-	var info = metadata.serve[i].split(":");
-	console.log("Spawning server for "+info[0]+" on port "+info[1]);
-	connect()
-	    .use(connect.static(info[0]))
-	    .listen(info[1]);
+		var info = metadata.serve[i].split(":");
+		console.log("Spawning server for "+info[0]+" on port "+info[1]);
+		connect()
+			.use(connect.static(info[0]))
+			.listen(info[1]);
     }
 
     console.log("Running server on port "+args.port);
