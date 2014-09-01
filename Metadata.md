@@ -126,6 +126,15 @@ If not `null`, a Node.js `package.json` file will be generated and
 this data will be included in it.  This is useful, for example, in
 generating presentations that run seamlessly under node-webkit.
 
+## `appendix`
+
+Values: String
+Default: ''
+
+This value will be appended to the end of the generated slides. 
+It can be useful to load or run additional scripts or add some
+global html content.
+
 # Section metadata
 
 # Slide metadata
